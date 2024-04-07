@@ -39,10 +39,40 @@ A good step-by-step approach to writing superclasses are the following steps.
 - Abstract out these common features.
 - Override or extend methods that don't work for the subclass.
 
+The relationship between a superclass and its subclasses is called a 'generalization'
+and it is indicated by a line with an empty arrow head which points to the superclass.
+The subclass 'inherits' all fields and methods from the superclass. For this reason
+we call this principle 'inheritance'.
+
+- Fields and Methods are 'carried over' from the superclass to subclasses
+- Only changes are defined in the subclass (overrides and extensions)
+
 ### Example Superclass 'Animal' with Subclasses 'Bird' & 'Dog'
 
 ![UML Class Animal, Dog and Bird](uml/ClassDiagram3.png)
 
-In this example, the `Bird` subclass still overrides the move method (because it moves differently).
-The `Dog` subclass extends the `Animal` superclass by adding a new `digHole()` method.
-Dogs are currently the only animal that can dig holes.
+In this example, the `Bird` subclass still overrides the move method (because it
+moves differently). The `Dog` subclass extends the `Animal` superclass by adding
+a new `digHole()` method. Dogs are currently the only animal that can dig holes.
+
+```cpp
+class Animal {
+
+}
+```
+
+```cpp
+class Dog: Animal {
+
+}
+```
+
+```cpp
+class Bird: Animal {
+
+}
+```
+
+## What is main for?
+
+Main creates the objects and then they interact.
