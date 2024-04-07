@@ -55,24 +55,127 @@ In this example, the `Bird` subclass still overrides the move method (because it
 moves differently). The `Dog` subclass extends the `Animal` superclass by adding
 a new `digHole()` method. Dogs are currently the only animal that can dig holes.
 
-```cpp
-class Animal {
+### C++ Implementation
 
+#### Animal.cpp
+
+```cpp
+#include "Animal.h"
+#include <cstdio>
+
+/**
+ * Animal implementation
+ */
+
+/**
+ * @return void
+ */
+Animal::Animal() { return; }
+
+/**
+ * @param int
+ * @return void
+ */
+void Animal::move(int) {
+  printf("moving...\n");
+  return;
+}
+
+/**
+ * @return void
+ */
+void Animal::eat() {
+  printf("eating...\n");
+  return;
+}
+
+/**
+ * @param String
+ * @return void
+ */
+void Animal::setName(string newName) {
+  name = newName;
+  return;
+}
+
+/**
+ * @return String
+ */
+string Animal::getName() { return name; }
+```
+
+#### Dog.cpp
+
+```cpp
+#include "Dog.h"
+
+/**
+ * Dog implementation
+ */
+
+/**
+ * @return void
+ */
+void Dog::digHole() {
+  printf("digging a hole...\n");
+  return;
 }
 ```
 
-```cpp
-class Dog: Animal {
-
-}
-```
+#### Bird.cpp
 
 ```cpp
-class Bird: Animal {
+#include "Bird.h"
+#include <cstdio>
 
+/**
+ * Bird implementation
+ */
+
+/**
+ * @param int
+ * @return void
+ */
+void Bird::move(int) {
+  printf("flying...\n");
+  return;
 }
 ```
 
 ## What is main for?
 
 Main creates the objects and then they interact.
+
+#### main.cpp
+
+```cpp
+#include "Animal.h"
+#include "Bird.h"
+#include "Dog.h"
+#include <cstdio>
+
+int main(int argc, char *argv[]) {
+  Animal *boar = new Animal();
+
+  boar->setName("boar");
+  /* printf(boar->name); */
+  printf("%s\n", boar->name.c_str());
+  boar->move(2);
+  boar->eat();
+
+  Bird *bird = new Bird();
+  bird->setName("birb");
+  printf("%s\n", bird->name.c_str());
+  bird->move(2);
+  bird->eat();
+
+  Dog *dog = new Dog();
+  dog->setName("doggo");
+  printf("%s\n", dog->name.c_str());
+  dog->move(2);
+  dog->eat();
+  dog->digHole();
+
+  return 0;
+}
+```
