@@ -1,0 +1,9 @@
+services:
+  animal_hierarchy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./src:/app
+    working_dir: /app/build
+    command: /bin/sh -c "cmake /app -B /app/build && make -C /app/build && /app/build/OOPClassHierarchy"
