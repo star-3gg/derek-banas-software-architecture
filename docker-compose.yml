@@ -1,0 +1,12 @@
+services:
+  dev_cmake_build:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        UID: ${LOCAL_UID}
+        GID: ${LOCAL_GID}
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: /bin/sh -c "cmake -B build && make -C build"
