@@ -103,6 +103,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           UPLOAD_URL: ${{ steps.create_release.outputs.upload_url }}
         run: |
+          # Sanitize upload url by removing {?name,label} from UPLOAD_URL if present
+          UPLOAD_URL="${UPLOAD_URL%\{*}"
+
           find build -type f -executable | while read binary_path; do
             binary_name=$(basename "$binary_path")
             echo "Uploading $binary_name..."
