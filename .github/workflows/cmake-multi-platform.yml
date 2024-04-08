@@ -107,7 +107,7 @@ jobs:
             curl_response=$(curl -w "%{http_code}" -o /dev/null -s -H "Authorization: token $GITHUB_TOKEN" \
                 -H "Content-Type: $(file -b --mime-type "$binary_path")" \
                 --data-binary @$binary_path \
-                "${UPLOAD_URL}?name=${asset_name}&label=${asset_name}")
+                "$UPLOAD_URL?name=$asset_name&label=$asset_name"
             if [[ "$curl_response" != "201" ]]; then
               echo "Failed to upload $binary_name with response code $curl_response"
               exit 1
