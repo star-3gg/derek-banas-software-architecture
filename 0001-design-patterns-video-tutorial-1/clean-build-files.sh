@@ -1,1 +1,0 @@
-rm -rdf src/build/*

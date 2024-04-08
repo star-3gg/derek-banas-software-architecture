@@ -7,6 +7,9 @@ project(OOPClassHierarchy)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+# INFO: Link static libraries
+set(CMAKE_EXE_LINKER_FLAGS "-static")
+
 # INFO: Set Release mode and optimizations
 # Uncomment this section if you want a debug build
 if(NOT CMAKE_BUILD_TYPE)
