@@ -1,1 +1,2 @@
-rm -rdf src/build/*
+#!/bin/sh
+rm -rdf build/*
