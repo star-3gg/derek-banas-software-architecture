@@ -1,27 +1,23 @@
 cmake_minimum_required(VERSION 3.10)
 
 # Set the project name
-project(OOPClassHierarchy)
+project(DesignPatternsVideoTutorial1)
 
 # Set the C++ standard
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# INFO: Link static libraries
-set(CMAKE_EXE_LINKER_FLAGS "-static")
-
-# INFO: Set Release mode and optimizations
-# Uncomment this section if you want a debug build
-if(NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Release)
-endif()
-
-set(CMAKE_CXX_FLAGS "-Wall -Wextra")
-set(CMAKE_CXX_FLAGS_DEBUG "-g")
-set(CMAKE_CXX_FLAGS_RELEASE "-O3")
-
 # Add the executable
 add_executable(${PROJECT_NAME} main.cpp Animal.cpp Bird.cpp Dog.cpp)
+
+# Add the test executable
+add_executable(runTests AnimalTest.cpp Animal.cpp)
+
+# Link with Google Test and the project library
+target_link_libraries(runTests gtest gtest_main pthread)
+
+# Add the test to CTest
+add_test(NAME AnimalTest COMMAND runTests)
 
 # Include directories
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
