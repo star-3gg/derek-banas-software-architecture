@@ -94,9 +94,9 @@ jobs:
           draft: false
           prerelease: false
 
-      - name: Debug Print Upload URL before Upload
-        run: |
-          echo "Upload URL from create_release step: ${{ steps.create_release.outputs.upload_url }}"
+      # - name: Debug Print Upload URL before Upload
+      #   run: |
+      #     echo "Upload URL from create_release step: ${{ steps.create_release.outputs.upload_url }}"
 
       - name: Find and Upload Binaries
         env:
@@ -106,9 +106,10 @@ jobs:
           # Sanitize upload url by removing {?name,label} from UPLOAD_URL if present
           UPLOAD_URL="${UPLOAD_URL%\{*}"
 
-          find build -type f -executable | while read binary_path; do
+          find build -type f -executable ! -name '*.out' ! -name 'runTests' ! -name '*.bin' | while read binary_path; do
             binary_name=$(basename "$binary_path")
             echo "Uploading $binary_name..."
+            echo "Binary path: $binary_path"
             echo "Upload URL: $UPLOAD_URL"
             asset_name="${binary_name}-${{ matrix.os }}-${{ matrix.build_type }}-${{ env.RELEASE_TAG }}"
             curl_response=$(curl -w "%{http_code}" -o /dev/null -s -H "Authorization: token $GITHUB_TOKEN" \
