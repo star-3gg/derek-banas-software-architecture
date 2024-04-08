@@ -99,11 +99,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           UPLOAD_URL: ${{ steps.create_release.outputs.upload_url }}
         run: |
-          find build -type f -executable -exec bash -c 'basename {}' \; | while read binary; do
-            echo "Uploading $binary..."
-            asset_name="${binary}-${{ matrix.os }}-${{ matrix.build_type }}-${{ env.RELEASE_TAG }}"
+          find build -type f -executable | while read binary_path; do
+            binary_name=$(basename "$binary_path")
+            echo "Uploading $binary_name..."
+            asset_name="${binary_name}-${{ matrix.os }}-${{ matrix.build_type }}-${{ env.RELEASE_TAG }}"
             curl -H "Authorization: token $GITHUB_TOKEN" \
-                -H "Content-Type: $(file -b --mime-type $binary)" \
-                --data-binary @$binary \
+                -H "Content-Type: $(file -b --mime-type "$binary_path")" \
+                --data-binary @"$binary_path" \
                 "$UPLOAD_URL?name=$asset_name&label=$asset_name"
           done
