@@ -9,4 +9,4 @@ services:
     volumes:
       - .:/app
     working_dir: /app
-    command: /bin/sh -c "cmake -B build && make -C build"
+    command: /bin/sh -c "cmake -B build && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -B build && make -C build"
