@@ -17,6 +17,9 @@ Coming soon!
 ## 🧪 Automated Testing
 No more sleepless nights worrying about breaking changes! This project uses the Google Testing Framework to catch those sneaky bugs. 🐛
 
+![GTest Run Log](https://github.com/star-3gg/derek-banas-software-architecture/assets/147496446/5b47bfc2-589a-470d-9cc0-100d624ba8be)
+
+
 ## 🏁 Prebuilt Binaries & Automatic Releases
 Every time a new commit is pushed to the main branch, our CI/CD pipeline kicks in to automatically build and test the project. 
 If everything checks out, a new release is created and published right here on our [releases page](https://github.com/star-3gg/derek-banas-software-architecture/releases).
